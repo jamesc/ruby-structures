@@ -21,7 +21,7 @@
 #
 
 module Structures
-  class AdjacencyList
+  module AdjacencyList
 
     def initialize
       @vertice ||= Hash.new
@@ -90,6 +90,10 @@ module Structures
     def basic_add_edge(i, j)
       @vertice[i].add(j)
     end
+  end
+
+  class DirectedGraph
+    include Structures::AdjacencyList
   end
 end
 

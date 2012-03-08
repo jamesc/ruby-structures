@@ -18,10 +18,10 @@
 
 require 'structures/graph'
 
-describe Structures::AdjacencyList, 'add_vertex',
+describe Structures::DirectedGraph, 'add_vertex',
     'num_vertices', 'delete_vertex' do
   it "can add vertices" do
-    g = Structures::AdjacencyList.new
+    g = Structures::DirectedGraph.new
     g.add_vertex(:foo)
     g.has_vertex(:foo).should eq(true)
     g.has_vertex(:bar).should eq(false)
@@ -37,9 +37,9 @@ describe Structures::AdjacencyList, 'add_vertex',
   end
 end
 
-describe Structures::AdjacencyList, 'add_vertex', 'each_vertex' do
+describe Structures::DirectedGraph, 'add_vertex', 'each_vertex' do
   it "enumeration of vertices works" do
-    g = Structures::AdjacencyList.new
+    g = Structures::DirectedGraph.new
     g.add_vertex(:foo)
     g.add_vertex(:bar)
     g.add_vertex(:baz)
@@ -51,11 +51,11 @@ describe Structures::AdjacencyList, 'add_vertex', 'each_vertex' do
   end
 end
 
-describe Structures::AdjacencyList, 'add_edge',
+describe Structures::DirectedGraph, 'add_edge',
     'num_vertices', 'each_adjacent',
     'each_edge' do
   it "can add edges" do
-    g = Structures::AdjacencyList.new
+    g = Structures::DirectedGraph.new
     g.has_edge(:foo, :bar).should eq(false)
     g.add_edge(:foo, :bar)
     g.has_edge(:foo, :bar).should eq(true)
@@ -76,10 +76,10 @@ describe Structures::AdjacencyList, 'add_edge',
   end
 end
 
-describe Structures::AdjacencyList, 'add_edge',
+describe Structures::DirectedGraph, 'add_edge',
     'num_edges', 'delete_edge' do
   it "can add edges" do
-    g = Structures::AdjacencyList.new
+    g = Structures::DirectedGraph.new
     g.add_edge(:foo, :bar)
     g.add_edge(:bar, :baz)
     g.add_edge(:foo, :baz)
