@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-require 'structures/graph_reps'
+require 'structures/graph'
 
 describe Structures::AdjacencyList, 'add_vertex',
     'num_vertices', 'delete_vertex' do
