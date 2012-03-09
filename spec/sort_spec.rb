@@ -19,7 +19,6 @@
 require 'structures/sort'
 
 describe Structures, 'selection_sort' do
-
   it "should sort properly" do
     a =  %w{this is a sentence to be sorted}.to_a
     Structures.selection_sort!(a)
@@ -40,7 +39,6 @@ describe Structures, 'selection_sort' do
 end
 
 describe Structures, 'heap_sort' do
-
   it "should sort properly" do
     a =  %w{this is a sentence to be sorted}.to_a
     sorted = Structures.heap_sort(a)
@@ -57,6 +55,26 @@ describe Structures, 'heap_sort' do
     a = []
     sorted = Structures.heap_sort(a)
     sorted.should eq([])
+  end
+end
+
+describe Structures, 'quick_sort!' do
+  it "should sort properly" do
+    a =  %w{this is a sentence to be sorted}.to_a
+    Structures.quick_sort!(a)
+    a.should eq(%w{a be is sentence sorted this to}.to_a)
+  end
+
+  it "should sort a single element" do
+    a = ["foo"]
+    Structures.quick_sort!(a)
+    a.should eq(["foo"])
+  end
+
+  it "should sort and empty list" do
+    a = []
+    Structures.quick_sort!(a)
+    a.should eq([])
   end
 end
 

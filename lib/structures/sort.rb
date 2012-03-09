@@ -23,7 +23,7 @@ require 'structures/heap'
 # this is O(n^^2)
 #
 def Structures.selection_sort!(a)
-  (0..a.size-1).each do |i|
+  (a.size-1).times do |i|
     min = i
     (i+1..a.size-1).each do |j|
       if a[j] < a[min]
@@ -50,4 +50,43 @@ def Structures.heap_sort(a)
     ret << e
   end
   ret
+end
+
+def Structures._partition(a, left, right, pivot_idx)
+  pivot_value = a[pivot_idx]
+  _swap(a, pivot_idx, right)
+  store_idx = left
+  (left..right-1).each do |i|
+    if a[i] < pivot_value
+      _swap(a, i, store_idx)
+      store_idx += 1
+    end
+  end
+  _swap(a, store_idx, right)
+  store_idx
+end
+
+def Structures._swap(a, p1, p2)
+  a[p1], a[p2] = a[p2], a[p1]
+end
+
+def Structures._best_pivot(a, l, r, mid)
+  min = l
+  min = r if a[r] < a[min]
+  min = mid if a[min] < a[min]
+  min
+end
+
+# Quick sort
+#
+# this is O(n log n) but can be O(n^^2) in worst case
+#
+def Structures.quick_sort!(a, left=0, right=a.size-1)
+    if left < right
+      pivot_idx = _best_pivot(a, left, right, left + (right-left)/2)
+
+      pivot_idx = _partition(a, left, right, pivot_idx)
+      quick_sort!(a, left, pivot_idx - 1)
+      quick_sort!(a, pivot_idx + 1, right)
+    end
 end
