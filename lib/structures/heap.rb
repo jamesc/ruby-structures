@@ -58,6 +58,23 @@ module Structures
       return unpack(ret)
     end
 
+    # decrease the key for a value and
+    # move into it's new position
+    #
+    # note, finding the value is O(n) by
+    # this method
+    def decrease_key(k, v)
+      idx = nil
+      @H.each_with_index do |elem, i|
+        if elem.value == v
+          idx = i
+        end
+      end
+      return if idx.nil?
+      @H[idx].key = k
+      siftup(idx)
+    end
+
     # Decrease the key of the node at position x
     # and move into position by siftup
     def siftup(x)
@@ -103,9 +120,7 @@ module Structures
     end
 
     def swap(pos1, pos2)
-      tmp = @H[pos1]
-      @H[pos1] = @H[pos2]
-      @H[pos2] = tmp
+      @H[pos1], @H[pos2] = @H[pos2], @H[pos1]
     end
 
     def to_s
